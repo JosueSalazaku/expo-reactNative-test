@@ -1,24 +1,25 @@
-import {Image, StyleSheet, Platform, View, Text, Touchable, TouchableOpacity} from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { StyleSheet, View, Text,TouchableOpacity} from 'react-native';
 import {useState} from "react";
 
 export default function HomeScreen() {
     const [count, setCount] = useState(0);
     console.log("Hello, world! count: ", count);
 
+    function sayHello(count: number) {
+        if (count === 12) {
+            return 'Goodbye, world!';
+        }
+
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Hello, world!</Text>
-            <TouchableOpacity style={styles.button} onPress={() => setCount(count + 1)}><Text>count: {count}</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => setCount(count + 1)}><Text style={styles.buttonText}>count: {count} {sayHello(count)} </Text></TouchableOpacity>
         </View>
     );
 }
 
-// create the style for the text
 const styles = StyleSheet.create({
     text: {
         fontSize: 20,
@@ -40,5 +41,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         margin: 10,
     },
+    buttonText: {
+        color: 'white',
+    },
 });
-
